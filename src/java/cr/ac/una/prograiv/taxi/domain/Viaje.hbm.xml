@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 23-sep-2017 16:46:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cr.ac.una.prograiv.taxi.domain.Viaje" table="viaje" catalog="transportesweb" optimistic-lock="version">
+        <id name="idViaje" type="int">
+            <column name="idViaje" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuario" class="cr.ac.una.prograiv.taxi.domain.Usuario" fetch="select">
+            <column name="Usuario" length="20" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="timestamp">
+            <column name="fecha" length="19" not-null="true" />
+        </property>
+        <property name="duracion" type="double">
+            <column name="duracion" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="monto" type="double">
+            <column name="monto" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="direccionNombreOrigen" type="serializable">
+            <column name="Direccion_nombre_origen" not-null="true" />
+        </property>
+        <property name="direccionNombreDestino" type="serializable">
+            <column name="Direccion_nombre_destino" not-null="true" />
+        </property>
+        <property name="idConductor" type="string">
+            <column name="idConductor" length="20" not-null="true" />
+        </property>
+        <property name="vehiculoPlaca" type="string">
+            <column name="Vehiculo_placa" length="10" not-null="true" />
+        </property>
+        <property name="puntaje" type="int">
+            <column name="Puntaje" not-null="true" />
+        </property>
+        <property name="comentario" type="string">
+            <column name="Comentario" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>
