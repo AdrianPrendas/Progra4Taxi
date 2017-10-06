@@ -58,9 +58,12 @@ System.out.println(user);
                     try{
                         bbl.getDao(user.getClass().getName()).save(user);
                         json = gson.toJson(user);
-                        out.write(json);
 System.out.println("se almaceno el cliente correctamente");
-                    }catch(Exception e){e.printStackTrace();}
+                    }catch(Exception e){
+                        json = gson.toJson(new Exception("error: no se pudo almacenar el cliente"));
+                        e.printStackTrace();
+                    }
+                    out.write(json);
                     break;
                 case "login":
                     user = new Usuario();
@@ -68,11 +71,12 @@ System.out.println("se almaceno el cliente correctamente");
                     user.setNombre(json);
                     json = request.getParameter("password");
                     user.setPassword(json);
+                    
                     user = ubl.login(user);
                     if(user != null)
                         json = gson.toJson(user);
                     else
-                        json = "error: usuario y/o contraseña invalidos";
+                        json = gson.toJson(new Exception("error: usuario y/o contraseña invalidos"));
 System.out.println(json);                    
                     out.write(json);
                     break;

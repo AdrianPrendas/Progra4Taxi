@@ -4,7 +4,7 @@ JsonUtils.revive = function (k, v) {
     if (v instanceof Object && v._class == 'Usuario')
         return new User(v.idUsuario, v.nombre, v.apellido1, v.apellido2, v.fechaNacimiento ,v.correo, v.password, v.esAdministrador);
 
-    return v;
+    return null;
 };
 
 JsonUtils.repalcer = function (k, v) {

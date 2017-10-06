@@ -2,19 +2,24 @@ var Proxy = Proxy || {};
 
 
 
-Proxy.login = function (userName, userPassword, callBack) {
+Proxy.login = function (userName, password, callBack) {
     $.ajax({
-        url: "/TransporteWeb/UserServices?action=login",
+        url: "/TransporteWeb/UserServices",
         type: "POST",
-        dataType: "text",
-        data: "userName=" + userName + "&password=" + userPassword
+        dataType: "json",
+        data: {
+            action:"login",
+            userName:userName,
+            password:password
+        }
     }).done(function (result) {
         try{
-            var object = JSON.parse(result, JsonUtils.revive);
+            var object = JsonUtils.revive(0,result);
+            if(object == null) throw 'err';
             callBack(object);
             alert("!!!exito!!!");
         }catch(e){
-            alert(result);
+            alert(result.detailMessage);
         }
     }).fail(function (e, msg, excepn) {
         alert('**** AJAX ERROR ' + msg + ' ****');
@@ -23,17 +28,21 @@ Proxy.login = function (userName, userPassword, callBack) {
 
 Proxy.registrarCliente = function(user,callBack){
      $.ajax({
-        url: "/TransporteWeb/UserServices?action=registrarCliente",
+        url: "/TransporteWeb/UserServices",
         type: "POST",
-        dataType: "text",
-        data: "cliente="+JSON.stringify(user,Storage.replacer)
+        dataType: "json",
+        data: {
+            action:"registrarCliente",
+            cliente: JSON.stringify(user,JsonUtils.repalcer)
+        }
     }).done(function (result) {
         try{
-            var object = JSON.parse(result, JsonUtils.revive);
+            var object = JsonUtils.revive(0,result);
+            if(object == null) throw 'err';
             callBack(object);
             alert("!!!exito!!!");
         }catch(e){
-            alert(result);
+            alert(result.detailMessage);
         }
     }).fail(function (e, msg, excepn) {
         alert('**** AJAX ERROR ' + msg + ' ****');
