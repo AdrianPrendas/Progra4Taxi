@@ -1,49 +1,53 @@
-var storage = {};
 
 function UserController(view) {
     this.UserController(view);
-};
+}
 
 UserController.prototype = {
     UserController: function (view) {
         this.view = view;
     },
     login: function (userName, password) {
-        Proxy.login(userName, password, this.storageUser);
+        Proxy.login(userName, password, this.storeUser);
+        this.view.ocultarFormLogin();
     },
-    storageUser: function (user) {
-        
+    storeUser: function (user) {
         //sotrage*******************************************
-        storage = Storage.retrieve("UserMetaData");
-        if (storage == null) {
-            storage = {};
-            Storage.store("UserMetaData", storage);
-        }
-        //sotrage*******************************************
-        storage['user']=user;
-        Storage.store("UserMetaData", storage);
-        
+        var storage = {};
+        storage.user = user;
+        Storage.store("user", storage);
+
         console.log("se almaceno el usuario correctamente en el localStorage");
         console.log(user);
-        
-        this.view.refrescarNav();
+
+        this.view.refrescarNav(storage);
     },
-    logOut: function(){
+    loadUser: function () {
+        var storage = {};
         //sotrage*******************************************
-        storage = Storage.retrieve("UserMetaData");
+        storage = Storage.retrieve("user");
+        
+        //sotrage*******************************************
+        if (storage)
+            view.refrescarNav(storage);
+    },
+    logOut: function () {
+        var storage;
+        //sotrage*******************************************
+        storage = Storage.retrieve("user");
         if (storage == null) {
             storage = {};
-            Storage.store("UserMetaData", storage);
+            Storage.store("user", storage);
         }
         //sotrage*******************************************
         delete storage.user;
-        Storage.store("UserMetaData", storage);
-        
-        this.view.refrescarNav();
+        Storage.store("user", storage);
+
+        this.view.refrescarNav(storage);
         alert("la session ha caducado!!!")
-        window.location.href="index.jsp";
+        window.location.href = "index.jsp";
     },
-    registerClient:function(user){
-        Proxy.registrarCliente(user,alert);
+    registerClient: function (user) {
+        Proxy.registrarCliente(user, this.view.ocultarFormRegistro);
     }
 };

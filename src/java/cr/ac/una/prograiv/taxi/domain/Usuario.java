@@ -1,5 +1,5 @@
 package cr.ac.una.prograiv.taxi.domain;
-// Generated 06-oct-2017 13:10:29 by Hibernate Tools 4.3.1
+// Generated 06-oct-2017 16:09:42 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -21,6 +21,7 @@ public class Usuario  implements java.io.Serializable, Jsonable {
      private String correo;
      private String password;
      private boolean esAdministrador;
+     private String direccion;
      private Conductor conductor;
      private Set<Viaje> viajes = new HashSet<Viaje>(0);
 
@@ -28,7 +29,7 @@ public class Usuario  implements java.io.Serializable, Jsonable {
     }
 
 	
-    public Usuario(String idUsuario, String nombre, String apellido1, String apellido2, Date fechaNacimiento, int telefono, String correo, String password, boolean esAdministrador) {
+    public Usuario(String idUsuario, String nombre, String apellido1, String apellido2, Date fechaNacimiento, int telefono, String correo, String password, boolean esAdministrador, String direccion) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido1 = apellido1;
@@ -38,8 +39,9 @@ public class Usuario  implements java.io.Serializable, Jsonable {
         this.correo = correo;
         this.password = password;
         this.esAdministrador = esAdministrador;
+        this.direccion = direccion;
     }
-    public Usuario(String idUsuario, String nombre, String apellido1, String apellido2, Date fechaNacimiento, int telefono, String correo, String password, boolean esAdministrador, Conductor conductor, Set<Viaje> viajes) {
+    public Usuario(String idUsuario, String nombre, String apellido1, String apellido2, Date fechaNacimiento, int telefono, String correo, String password, boolean esAdministrador, String direccion, Conductor conductor, Set<Viaje> viajes) {
        this.idUsuario = idUsuario;
        this.nombre = nombre;
        this.apellido1 = apellido1;
@@ -49,6 +51,7 @@ public class Usuario  implements java.io.Serializable, Jsonable {
        this.correo = correo;
        this.password = password;
        this.esAdministrador = esAdministrador;
+       this.direccion = direccion;
        this.conductor = conductor;
        this.viajes = viajes;
     }
@@ -115,6 +118,13 @@ public class Usuario  implements java.io.Serializable, Jsonable {
     
     public void setEsAdministrador(boolean esAdministrador) {
         this.esAdministrador = esAdministrador;
+    }
+    public String getDireccion() {
+        return this.direccion;
+    }
+    
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
     public Conductor getConductor() {
         return this.conductor;

@@ -61,7 +61,7 @@
                             <div class="form-group col-xs-12 col-lg-12">
                                 <label for="celular"  class="control-label col-xs-12 col-sm-4"><b>Celular: </b></label>
                                 <div class="col-xs-12 col-sm-8">
-                                    <input type="text" class="form-control" placeholder="99 99 99 99" id="phone" pattern='^[1-9]+\d{7}' required>
+                                    <input type="text" class="form-control" placeholder="99 99 99 99" id="phone" pattern='^[1-9]+\d{7}' maxlength="8" required>
                                 </div>
                             </div>
 

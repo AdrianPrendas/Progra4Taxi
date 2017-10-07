@@ -9,19 +9,18 @@ User.prototype = {
         this.apellido1 = last;
         this.apellido2 = final;
         this.fechaNacimiento = date;
+        this.direccion = address;
         this.telefono = phone;
         this.correo = email;
         this.password = password;
-        this.esAdministrador = (tipo==0)? true : false;
+        this.esAdministrador = tipo;
     },
     toString: function () {
        return "user name: "+this.idUsuario+
                "\nnombre: "+this.nombre+" "+this.apellido1+" "+this.apellido2+
                "\nfecha de nacimiento: "+this.fechaNacimiento+
                "\ncorreo: "+this.correo+"\n"+
-               ((this.esAdministrador==0)?"administrador"
-                                         :(this.esAdministrador==1)?"cliente"
-                                                                   :"undefined");
+               (this.esAdministrador==true)? "administrador":"cliente";
     }
 };
 

@@ -9,7 +9,6 @@ Storage = {
 			return null;
 			
         	return JSON.parse(jsonObject,this.revive);
-		
 	},
 
 	revive: function (k,v) {

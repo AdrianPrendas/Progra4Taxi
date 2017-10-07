@@ -8,42 +8,33 @@ Proxy.login = function (userName, password, callBack) {
         type: "POST",
         dataType: "json",
         data: {
-            action:"login",
-            userName:userName,
-            password:password
+            action: "login",
+            userName: userName,
+            password: password
         }
     }).done(function (result) {
-        try{
-            var object = JsonUtils.revive(0,result);
-            if(object == null) throw 'err';
+        var object = JsonUtils.revive(0, result);
+        if (object instanceof User)
             callBack(object);
-            alert("!!!exito!!!");
-        }catch(e){
-            alert(result.detailMessage);
-        }
+        else
+            alert(result.detailMessage)
     }).fail(function (e, msg, excepn) {
         alert('**** AJAX ERROR ' + msg + ' ****');
     });
 };
 
-Proxy.registrarCliente = function(user,callBack){
-     $.ajax({
+Proxy.registrarCliente = function (user, callBack) {
+    $.ajax({
         url: "/TransporteWeb/UserServices",
         type: "POST",
         dataType: "json",
         data: {
-            action:"registrarCliente",
-            cliente: JSON.stringify(user,JsonUtils.repalcer)
+            action: "registrarCliente",
+            cliente: JSON.stringify(user, JsonUtils.repalcer)
         }
-    }).done(function (result) {
-        try{
-            var object = JsonUtils.revive(0,result);
-            if(object == null) throw 'err';
-            callBack(object);
-            alert("!!!exito!!!");
-        }catch(e){
-            alert(result.detailMessage);
-        }
+    }).done(function (result) {        
+        alert(result.detailMessage);
+        callBack();
     }).fail(function (e, msg, excepn) {
         alert('**** AJAX ERROR ' + msg + ' ****');
     });
@@ -51,20 +42,20 @@ Proxy.registrarCliente = function(user,callBack){
 
 
 /*Proxy.registrarCliente = function (client, callBack) {
-    var AJAX_req = new XMLHttpRequest();
-    url = "/TransporteWeb/UserServices?action=registrarCliente";
-    AJAX_req.open("POST", url, true);
-    AJAX_req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    AJAX_req.onreadystatechange = function () {
-        if (AJAX_req.readyState === 4 && AJAX_req.status === 200) {
-            callBack(AJAX_req.responseText);
-        }
-    };
-    var json = JSON.stringify(client, JsonUtils.repalcer);
-    //console.log(json)
-    AJAX_req.send("cliente=" + json);
-
-};*/
+ var AJAX_req = new XMLHttpRequest();
+ url = "/TransporteWeb/UserServices?action=registrarCliente";
+ AJAX_req.open("POST", url, true);
+ AJAX_req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ AJAX_req.onreadystatechange = function () {
+ if (AJAX_req.readyState === 4 && AJAX_req.status === 200) {
+ callBack(AJAX_req.responseText);
+ }
+ };
+ var json = JSON.stringify(client, JsonUtils.repalcer);
+ //console.log(json)
+ AJAX_req.send("cliente=" + json);
+ 
+ };*/
 /*
  Proxy.getCiudades = function (callBack) {
  var AJAX_req = new XMLHttpRequest();

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 06-oct-2017 13:10:30 by Hibernate Tools 4.3.1 -->
+<!-- Generated 06-oct-2017 16:09:43 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="cr.ac.una.prograiv.taxi.domain.Usuario" table="usuario" catalog="transportesweb" optimistic-lock="version">
         <id name="idUsuario" type="string">
@@ -24,13 +24,16 @@
             <column name="telefono" not-null="true" unique="true" />
         </property>
         <property name="correo" type="string">
-            <column name="correo" length="45" not-null="true" />
+            <column name="correo" length="45" not-null="true" unique="true" />
         </property>
         <property name="password" type="string">
             <column name="password" length="45" not-null="true" />
         </property>
         <property name="esAdministrador" type="boolean">
             <column name="esAdministrador" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" not-null="true" />
         </property>
         <one-to-one name="conductor" class="cr.ac.una.prograiv.taxi.domain.Conductor"></one-to-one>
         <set name="viajes" table="viaje" inverse="true" lazy="false" fetch="select">

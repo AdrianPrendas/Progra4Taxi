@@ -57,8 +57,8 @@ System.out.println("accion: "+accion);
 System.out.println(user);
                     try{
                         bbl.getDao(user.getClass().getName()).save(user);
-                        json = gson.toJson(user);
 System.out.println("se almaceno el cliente correctamente");
+                    json = gson.toJson(new Exception("se almaceno el cliente correctamente"));
                     }catch(Exception e){
                         json = gson.toJson(new Exception("error: no se pudo almacenar el cliente"));
                         e.printStackTrace();

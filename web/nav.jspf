@@ -1,6 +1,6 @@
 <%@ include file="register.jspf" %> 
 <%@ include file="login.jspf" %> 
-<nav class="navbar navbar-default" style="margin-bottom: 0px;z-index: 5">
+<nav class="navbar navbar-default" style="margin-bottom: 0px;z-index: 5" id="nav">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
